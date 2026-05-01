@@ -1,9 +1,10 @@
 import numpy as np
 import pandas as pd 
 import matplotlib.pyplot as plt
-
+import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 data = {
     "YearsExperience": [1, 2, 3, 4, 5, 6, 7, 8 ,9, 10],
@@ -31,11 +32,10 @@ y_pred = model.predict(X_test)
 print("Predictions:", y_pred)
 print("Actual:", y_test.values)
 
-from sklearn.metrics import mean_absolute_error
+
 
 print(mean_absolute_error(y_test, y_pred))
 
-import joblib
 joblib.dump(model, "salary_model.pkl")
 
 model.predict(pd.DataFrame({"YearsExperience": [5]}))
